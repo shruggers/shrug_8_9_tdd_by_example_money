@@ -2,7 +2,7 @@ require 'spec_helper'
 
 class Money
   attr_reader :amount, :currency
-  protected :amount  
+  # protected :amount
   
   class << self
     def dollar(amount)
@@ -34,7 +34,7 @@ end
 
 class Bank
   def reduce(expression, to)
-    Money.dollar(10)
+    Money.new(expression.augend.amount + expression.addend.amount, to)
   end
 end
 
