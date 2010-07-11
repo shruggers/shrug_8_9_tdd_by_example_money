@@ -14,28 +14,23 @@ class Money
     end
   end
   
+  def initialize(amount, currency)
+    @amount = amount
+    @currency = currency
+  end
+  
   def ==(other)
     self.class == other.class && amount == other.amount
   end
 end
 
 class Dollar < Money
-  def initialize(amount, currency)
-    @amount = amount
-    @currency = currency
-  end
-  
   def *(multiplier)
     Money.dollar(@amount * multiplier)
   end
 end
 
 class Franc < Money
-  def initialize(amount, currency)
-    @amount = amount
-    @currency = currency
-  end
-  
   def *(multiplier)
     Money.franc(@amount * multiplier)
   end
