@@ -12,7 +12,7 @@ class Dollar
   # end
   
   def times(multiplier)
-    @amount = amount * multiplier
+    Dollar.new(@amount * multiplier)
   end
 end
 
