@@ -13,6 +13,10 @@ class Dollar
 end
 
 describe Dollar do
+  it "can be checked for equality" do
+    Dollar.new(5).should eq(Dollar.new(5))
+  end
+  
   it "can be multiplied" do
     five = Dollar.new(5)
     product = five * 2
