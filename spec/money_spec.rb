@@ -48,9 +48,9 @@ class Sum
 end
 
 describe Bank do
+  let(:bank) { Bank.new }
   it "reduces sums" do
     sum = Sum.new(Money.dollar(3), Money.dollar(4))
-    bank = Bank.new
     bank.reduce(sum, :USD).should eq(Money.dollar(7))
   end
 end
