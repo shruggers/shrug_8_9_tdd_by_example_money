@@ -19,6 +19,7 @@ end
 describe Dollar do
   it "can be checked for equality" do
     Dollar.new(5).should eq(Dollar.new(5))
+    Dollar.new(5).should_not eq(Dollar.new(6))
   end
   
   it "can be multiplied" do
