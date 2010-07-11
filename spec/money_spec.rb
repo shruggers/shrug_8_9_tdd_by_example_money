@@ -2,6 +2,7 @@ require 'spec_helper'
 
 class Dollar
   attr_reader :amount
+  private :amount
   
   def initialize(amount)
     @amount = amount
