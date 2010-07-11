@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 class Dollar
-  
+  def *(other)
+  end
 end
 
 describe Dollar do
