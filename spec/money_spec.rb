@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+class Money
+  
+end
+
 class Dollar
   attr_reader :amount
   protected :amount
