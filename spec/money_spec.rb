@@ -40,6 +40,11 @@ class Franc < Money
 end
 
 describe Money do
+  it "has a currency" do
+    Money.dollar(5).currency.should eq(:USD)
+    Money.franc(5).currency.should eq(:CHF)
+  end
+  
   it "can be checked for equality" do
     Money.dollar(5).should_not eq(Money.franc(5))
     Money.franc(5).should_not eq(Money.dollar(5))
