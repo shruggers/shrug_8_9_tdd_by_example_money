@@ -20,7 +20,7 @@ class Money
   end
   
   def ==(other)
-    self.class == other.class && amount == other.amount
+    self.currency == other.currency && amount == other.amount
   end
 end
 
