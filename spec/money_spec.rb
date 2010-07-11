@@ -28,7 +28,7 @@ class Money
   end
   
   def +(addend)
-    Money.new(amount + addend.amount, currency)
+    Sum.new(self, addend)
   end
 end
 
@@ -38,11 +38,28 @@ class Bank
   end
 end
 
+class Sum
+  attr_reader :augend, :addend
+  
+  def initialize(augend, addend)
+    @augend = augend
+    @addend = addend
+  end
+end
+
 describe Money do
-  it "can be added" do
-    sum = Money.dollar(5) + Money.dollar(5)
-    bank = Bank.new
-    bank.reduce(sum, :USD).should eq(Money.dollar(10))
+  describe "addition" do
+    it "can be added" do
+      sum = Money.dollar(5) + Money.dollar(5)
+      bank = Bank.new
+      bank.reduce(sum, :USD).should eq(Money.dollar(10))
+    end
+
+    it "returns a sum" do
+      sum = Money.dollar(5) + Money.dollar(5)
+      sum.augend.should eq(Money.dollar(5))
+      sum.addend.should eq(Money.dollar(5))
+    end
   end
   
   it "has a currency" do
