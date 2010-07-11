@@ -6,11 +6,11 @@ class Money
   
   class << self
     def dollar(amount)
-      Dollar.new(amount)
+      Dollar.new(amount, :USD)
     end
 
     def franc(amount)
-      Franc.new(amount)
+      Franc.new(amount, :CHF)
     end
   end
   
@@ -20,9 +20,9 @@ class Money
 end
 
 class Dollar < Money
-  def initialize(amount)
+  def initialize(amount, currency)
     @amount = amount
-    @currency = :USD
+    @currency = currency
   end
   
   def *(multiplier)
@@ -31,9 +31,9 @@ class Dollar < Money
 end
 
 class Franc < Money
-  def initialize(amount)
+  def initialize(amount, currency)
     @amount = amount
-    @currency = :CHF
+    @currency = currency
   end
   
   def *(multiplier)
