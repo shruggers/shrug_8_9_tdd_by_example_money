@@ -30,11 +30,14 @@ class Money
   def +(addend)
     Sum.new(self, addend)
   end
+  
+  def reduce(to)
+    self
+  end
 end
 
 class Bank
   def reduce(source, to)
-    return source if source.is_a?(Money)
     source.reduce(to)
   end
 end
