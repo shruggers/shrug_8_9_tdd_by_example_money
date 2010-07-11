@@ -29,6 +29,13 @@ class Franc < Money
   end
 end
 
+describe Money do
+  it "can be checked for equality" do
+    Dollar.new(5).should_not eq(Franc.new(5))
+    Franc.new(5).should_not eq(Dollar.new(5))
+  end
+end
+
 describe Franc do
   it "can be checked for equality" do
     Franc.new(5).should eq(Franc.new(5))
