@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class Money
-  attr_reader :amount
+  attr_reader :amount, :currency
   protected :amount  
   
   class << self
@@ -16,10 +16,6 @@ class Money
   
   def ==(other)
     self.class == other.class && amount == other.amount
-  end
-  
-  def currency
-    @currency
   end
 end
 
