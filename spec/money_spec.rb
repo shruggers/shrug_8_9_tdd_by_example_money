@@ -32,7 +32,7 @@ end
 
 class Franc < Money
   def *(multiplier)
-    Money.franc(@amount * multiplier)
+    Money.new(@amount * multiplier, currency)
   end
 end
 
