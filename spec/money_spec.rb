@@ -26,7 +26,7 @@ end
 
 class Dollar < Money
   def *(multiplier)
-    Money.dollar(@amount * multiplier)
+    Money.new(@amount * multiplier, currency)
   end
 end
 
