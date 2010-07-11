@@ -31,33 +31,33 @@ end
 
 describe Money do
   it "can be checked for equality" do
-    Dollar.new(5).should_not eq(Franc.new(5))
-    Franc.new(5).should_not eq(Dollar.new(5))
+    Money.dollar(5).should_not eq(Money.franc(5))
+    Money.franc(5).should_not eq(Money.dollar(5))
   end
 end
 
 describe Franc do
   it "can be checked for equality" do
-    Franc.new(5).should eq(Franc.new(5))
-    Franc.new(5).should_not eq(Franc.new(6))
+    Money.franc(5).should eq(Money.franc(5))
+    Money.franc(5).should_not eq(Money.franc(6))
   end
   
   it "can be multiplied" do
-    five = Franc.new(5)
-    (five * 2).should eq(Franc.new(10))
-    (five * 3).should eq(Franc.new(15))
+    five = Money.franc(5)
+    (five * 2).should eq(Money.franc(10))
+    (five * 3).should eq(Money.franc(15))
   end
 end
 
 describe Dollar do
   it "can be checked for equality" do
-    Dollar.new(5).should eq(Dollar.new(5))
-    Dollar.new(5).should_not eq(Dollar.new(6))
+    Money.dollar(5).should eq(Money.dollar(5))
+    Money.dollar(5).should_not eq(Money.dollar(6))
   end
   
   it "can be multiplied" do
-    five = Dollar.new(5)
-    (five * 2).should eq(Dollar.new(10))
-    (five * 3).should eq(Dollar.new(15))
+    five = Money.dollar(5)
+    (five * 2).should eq(Money.dollar(10))
+    (five * 3).should eq(Money.dollar(15))
   end
 end
