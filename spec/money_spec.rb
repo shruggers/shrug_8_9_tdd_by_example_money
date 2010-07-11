@@ -70,6 +70,14 @@ class Sum
       options[:to]
     )
   end
+  
+  def +(addend)
+    Sum.new(self, addend)
+  end
+  
+  def *(multiplier)
+    Sum.new(augend * multiplier, addend * multiplier)
+  end
 end
 
 describe Bank do
@@ -96,6 +104,22 @@ describe Bank do
       bank.add_rate(:CHF, :USD, 2)
       bank.reduce(Money.franc(2), to: :USD).should eq(Money.dollar(1))
     end
+  end
+end
+
+describe Sum do
+  let(:bank) { Bank.new }
+  
+  it "can be added to Money" do
+    bank.add_rate(:CHF, :USD, 2)
+    sum = Sum.new(Money.dollar(5), Money.franc(10))
+    bank.reduce(sum + Money.dollar(5), to: :USD).should eq(Money.dollar(15))
+  end
+  
+  it "can be multiplied" do
+    bank.add_rate(:CHF, :USD, 2)
+    sum = Sum.new(Money.dollar(5), Money.franc(10))
+    bank.reduce(sum * 2, to: :USD).should eq(Money.dollar(20))
   end
 end
 
