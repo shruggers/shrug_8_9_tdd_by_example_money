@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 class Dollar
+  attr_reader :amount
+  
   # We need a method that modifies the receiver
   # def *(other)
   # end
