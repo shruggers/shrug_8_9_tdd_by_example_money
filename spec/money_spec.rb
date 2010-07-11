@@ -12,7 +12,7 @@ class Dollar
   end
   
   def ==(other)
-    true
+    amount == other.amount
   end
 end
 
@@ -24,9 +24,7 @@ describe Dollar do
   
   it "can be multiplied" do
     five = Dollar.new(5)
-    product = five * 2
-    product.amount.should eq(10)
-    product = five * 3
-    product.amount.should eq(15)
+    (five * 2).should eq(Dollar.new(10))
+    (five * 3).should eq(Dollar.new(15))
   end
 end
