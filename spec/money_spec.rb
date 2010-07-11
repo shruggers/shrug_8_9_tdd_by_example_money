@@ -33,9 +33,9 @@ class Money
 end
 
 class Bank
-  def reduce(expression, to)
-    return expression if expression.is_a?(Money)
-    expression.reduce(to)
+  def reduce(source, to)
+    return source if source.is_a?(Money)
+    source.reduce(to)
   end
 end
 
