@@ -64,7 +64,11 @@ class Sum
   end
   
   def reduce(bank, options)
-    Money.new(augend.amount + addend.amount, options[:to])
+    Money.new(
+      augend.reduce(bank, to: options[:to]).amount +
+      addend.reduce(bank, to: options[:to]).amount,
+      options[:to]
+    )
   end
 end
 
@@ -96,10 +100,11 @@ describe Bank do
 end
 
 describe Money do
+  let(:bank) { Bank.new }
+  
   describe "addition" do
     it "can be added" do
       sum = Money.dollar(5) + Money.dollar(5)
-      bank = Bank.new
       bank.reduce(sum, to: :USD).should eq(Money.dollar(10))
     end
 
@@ -107,6 +112,11 @@ describe Money do
       sum = Money.dollar(5) + Money.dollar(5)
       sum.augend.should eq(Money.dollar(5))
       sum.addend.should eq(Money.dollar(5))
+    end
+    
+    it "can add mixed currencies" do
+      bank.add_rate(:CHF, :USD, 2)
+      bank.reduce(Money.dollar(5) + Money.franc(10), to: :USD).should eq(Money.dollar(10))
     end
   end
   
