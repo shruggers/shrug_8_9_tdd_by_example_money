@@ -31,14 +31,14 @@ class Money
     Sum.new(self, addend)
   end
   
-  def reduce(to)
+  def reduce(options)
     self
   end
 end
 
 class Bank
-  def reduce(source, to)
-    source.reduce(to)
+  def reduce(source, options)
+    source.reduce(to: options[:to])
   end
 end
 
@@ -50,8 +50,8 @@ class Sum
     @addend = addend
   end
   
-  def reduce(to)
-    Money.new(augend.amount + addend.amount, to)
+  def reduce(options)
+    Money.new(augend.amount + addend.amount, options[:to])
   end
 end
 
@@ -59,11 +59,11 @@ describe Bank do
   let(:bank) { Bank.new }
   it "reduces sums" do
     sum = Sum.new(Money.dollar(3), Money.dollar(4))
-    bank.reduce(sum, :USD).should eq(Money.dollar(7))
+    bank.reduce(sum, to: :USD).should eq(Money.dollar(7))
   end
   
   it "reduces Money" do
-    bank.reduce(Money.dollar(1), :USD).should eq(Money.dollar(1))
+    bank.reduce(Money.dollar(1), to: :USD).should eq(Money.dollar(1))
   end
 end
 
@@ -72,7 +72,7 @@ describe Money do
     it "can be added" do
       sum = Money.dollar(5) + Money.dollar(5)
       bank = Bank.new
-      bank.reduce(sum, :USD).should eq(Money.dollar(10))
+      bank.reduce(sum, to: :USD).should eq(Money.dollar(10))
     end
 
     it "returns a sum" do
