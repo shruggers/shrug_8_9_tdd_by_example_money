@@ -17,6 +17,10 @@ class Money
   def ==(other)
     self.class == other.class && amount == other.amount
   end
+  
+  def currency
+    @currency
+  end
 end
 
 class Dollar < Money
@@ -28,10 +32,6 @@ class Dollar < Money
   def *(multiplier)
     Dollar.new(@amount * multiplier)
   end
-  
-  def currency
-    @currency
-  end
 end
 
 class Franc < Money
@@ -42,10 +42,6 @@ class Franc < Money
   
   def *(multiplier)
     Franc.new(@amount * multiplier)
-  end
-  
-  def currency
-    @currency
   end
 end
 
