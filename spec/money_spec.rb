@@ -22,6 +22,7 @@ end
 class Dollar < Money
   def initialize(amount)
     @amount = amount
+    @currency = :USD
   end
   
   def *(multiplier)
@@ -29,13 +30,14 @@ class Dollar < Money
   end
   
   def currency
-    :USD
+    @currency
   end
 end
 
 class Franc < Money
   def initialize(amount)
     @amount = amount
+    @currency = :CHF
   end
   
   def *(multiplier)
@@ -43,7 +45,7 @@ class Franc < Money
   end
   
   def currency
-    :CHF
+    @currency
   end
 end
 
