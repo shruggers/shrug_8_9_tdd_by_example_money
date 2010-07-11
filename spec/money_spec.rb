@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 class Money
-  
+  attr_reader :amount
+  protected :amount  
 end
 
 class Dollar < Money
-  attr_reader :amount
-  protected :amount
-  
   def initialize(amount)
     @amount = amount
   end
