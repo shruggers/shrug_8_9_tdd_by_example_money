@@ -3,12 +3,16 @@ require 'spec_helper'
 class Dollar
   attr_reader :amount
   
+  def initialize(amount)
+    @amount = 5 * 2
+  end
+  
   # We need a method that modifies the receiver
   # def *(other)
   # end
   
   def times(multiplier)
-    @amount = 5 * 2
+    @amount
   end
 end
 
