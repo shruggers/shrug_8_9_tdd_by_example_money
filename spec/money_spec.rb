@@ -4,7 +4,7 @@ class Money
   
 end
 
-class Dollar
+class Dollar < Money
   attr_reader :amount
   protected :amount
   
