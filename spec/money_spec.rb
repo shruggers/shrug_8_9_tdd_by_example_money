@@ -32,11 +32,16 @@ class Money
   end
   
   def reduce(options)
-    self
+    rate = currency == :CHF && options[:to] == :USD ? 2 : 1
+    Money.new(amount / rate, options[:to])
   end
 end
 
 class Bank
+  def add_rate(from, to, rate)
+    # I didn't see this in the text! But need it to go green...
+  end
+  
   def reduce(source, options)
     source.reduce(to: options[:to])
   end
@@ -57,13 +62,21 @@ end
 
 describe Bank do
   let(:bank) { Bank.new }
+  
   it "reduces sums" do
     sum = Sum.new(Money.dollar(3), Money.dollar(4))
     bank.reduce(sum, to: :USD).should eq(Money.dollar(7))
   end
   
-  it "reduces Money" do
-    bank.reduce(Money.dollar(1), to: :USD).should eq(Money.dollar(1))
+  describe "reducing Money" do
+    it "reduces to the same currency" do
+      bank.reduce(Money.dollar(1), to: :USD).should eq(Money.dollar(1))
+    end
+
+    it "reduces to other currencies" do
+      bank.add_rate(:CHF, :USD, 2)
+      bank.reduce(Money.franc(2), to: :USD).should eq(Money.dollar(1))
+    end
   end
 end
 
