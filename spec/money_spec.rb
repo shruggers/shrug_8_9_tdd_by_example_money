@@ -47,6 +47,14 @@ class Sum
   end
 end
 
+describe Bank do
+  it "reduces sums" do
+    sum = Sum.new(Money.dollar(3), Money.dollar(4))
+    bank = Bank.new
+    bank.reduce(sum, :USD).should eq(Money.dollar(7))
+  end
+end
+
 describe Money do
   describe "addition" do
     it "can be added" do
