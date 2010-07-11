@@ -20,9 +20,6 @@ class Dollar < Money
 end
 
 class Franc < Money
-  attr_reader :amount
-  protected :amount
-  
   def initialize(amount)
     @amount = amount
   end
