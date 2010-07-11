@@ -4,7 +4,7 @@ class Dollar
   attr_reader :amount
   
   def initialize(amount)
-    @amount = 5 * 2
+    
   end
   
   # We need a method that modifies the receiver
@@ -12,7 +12,7 @@ class Dollar
   # end
   
   def times(multiplier)
-    @amount
+    @amount = 5 * 2
   end
 end
 
