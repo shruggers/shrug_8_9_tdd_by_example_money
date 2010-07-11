@@ -5,7 +5,7 @@ class Dollar
   # def *(other)
   # end
   
-  def times
+  def times(multiplier)
     
   end
 end
