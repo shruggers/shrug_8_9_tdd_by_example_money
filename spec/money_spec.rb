@@ -26,7 +26,7 @@ class Dollar < Money
   end
   
   def *(multiplier)
-    Dollar.new(@amount * multiplier)
+    Money.dollar(@amount * multiplier)
   end
 end
 
@@ -37,7 +37,7 @@ class Franc < Money
   end
   
   def *(multiplier)
-    Franc.new(@amount * multiplier)
+    Money.franc(@amount * multiplier)
   end
 end
 
