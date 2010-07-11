@@ -24,11 +24,19 @@ class Money
   end
 
   def *(multiplier)
-    Money.new(@amount * multiplier, currency)
+    Money.new(amount * multiplier, currency)
+  end
+  
+  def +(addend)
+    Money.new(amount + addend.amount, currency)
   end
 end
 
 describe Money do
+  it "can be added" do
+    (Money.dollar(5) + Money.dollar(5)).should eq(Money.dollar(10))
+  end
+  
   it "has a currency" do
     Money.dollar(5).currency.should eq(:USD)
     Money.franc(5).currency.should eq(:CHF)
