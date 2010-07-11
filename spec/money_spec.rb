@@ -34,6 +34,7 @@ end
 
 class Bank
   def reduce(expression, to)
+    return expression if expression.is_a?(Money)
     expression.reduce(to)
   end
 end
@@ -56,6 +57,10 @@ describe Bank do
   it "reduces sums" do
     sum = Sum.new(Money.dollar(3), Money.dollar(4))
     bank.reduce(sum, :USD).should eq(Money.dollar(7))
+  end
+  
+  it "reduces Money" do
+    bank.reduce(Money.dollar(1), :USD).should eq(Money.dollar(1))
   end
 end
 
