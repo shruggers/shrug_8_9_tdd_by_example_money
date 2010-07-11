@@ -3,6 +3,10 @@ require 'spec_helper'
 class Money
   attr_reader :amount
   protected :amount  
+  
+  def ==(other)
+    amount == other.amount
+  end
 end
 
 class Dollar < Money
@@ -12,10 +16,6 @@ class Dollar < Money
   
   def *(multiplier)
     Dollar.new(@amount * multiplier)
-  end
-  
-  def ==(other)
-    amount == other.amount
   end
 end
 
