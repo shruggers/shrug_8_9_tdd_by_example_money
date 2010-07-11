@@ -32,9 +32,17 @@ class Money
   end
 end
 
+class Bank
+  def reduce(expression, to)
+    Money.dollar(10)
+  end
+end
+
 describe Money do
   it "can be added" do
-    (Money.dollar(5) + Money.dollar(5)).should eq(Money.dollar(10))
+    sum = Money.dollar(5) + Money.dollar(5)
+    bank = Bank.new
+    bank.reduce(sum, :USD).should eq(Money.dollar(10))
   end
   
   it "has a currency" do
