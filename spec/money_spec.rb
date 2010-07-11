@@ -31,9 +31,8 @@ class Money
     Sum.new(self, addend)
   end
   
-  def reduce(options)
-    rate = currency == :CHF && options[:to] == :USD ? 2 : 1
-    Money.new(amount / rate, options[:to])
+  def reduce(bank, options)
+    Money.new(amount / bank.rate(currency, options[:to]), options[:to])
   end
 end
 
@@ -42,8 +41,12 @@ class Bank
     # I didn't see this in the text! But need it to go green...
   end
   
+  def rate(from, to)
+    from == :CHF && to == :USD ? 2 : 1
+  end
+  
   def reduce(source, options)
-    source.reduce(to: options[:to])
+    source.reduce(self, to: options[:to])
   end
 end
 
@@ -55,7 +58,7 @@ class Sum
     @addend = addend
   end
   
-  def reduce(options)
+  def reduce(bank, options)
     Money.new(augend.amount + addend.amount, options[:to])
   end
 end
