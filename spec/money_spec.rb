@@ -41,6 +41,8 @@ describe Money do
   end
   
   it "can be checked for equality" do
+    Money.dollar(5).should eq(Money.dollar(5))
+    Money.dollar(5).should_not eq(Money.dollar(6))
     Money.dollar(5).should_not eq(Money.franc(5))
     Money.franc(5).should_not eq(Money.dollar(5))
   end
