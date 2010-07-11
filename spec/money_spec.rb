@@ -40,4 +40,9 @@ describe Money do
     Money.dollar(5).should_not eq(Money.franc(5))
     Money.franc(5).should_not eq(Money.dollar(5))
   end
+  
+  it "can be multiplied" do
+    (Money.franc(5) * 2).should eq(Money.franc(10))
+    (Money.dollar(5) * 3).should eq(Money.dollar(15))
+  end
 end
