@@ -19,7 +19,7 @@ class Dollar < Money
   end
 end
 
-class Franc
+class Franc < Money
   attr_reader :amount
   protected :amount
   
