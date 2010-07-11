@@ -19,7 +19,9 @@ end
 describe Dollar do
   it "can be multiplied" do
     five = Dollar.new(5)
-    five.times(2)
-    five.amount.should eq(10)
+    product = five.times(2)
+    product.amount.should eq(10)
+    product = five.times(3)
+    product.amount.should eq(15)
   end
 end
